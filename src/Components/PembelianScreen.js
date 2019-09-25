@@ -6,12 +6,13 @@ export default class PembelianScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data:[]
+      data:[],
+      ada: false
     };
   }
 
   _getListPembelian=()=>{
-    fetch ('http://192.168.42.53:8080/api_sepatu/getTransaksi.php', {
+    fetch ('http://simlabtiug.com/api_sepatu/getTransaksi.php', {
   method: 'POST',
   headers: {
     Accept: 'application/json',
@@ -21,9 +22,18 @@ export default class PembelianScreen extends Component {
 })
   .then (response => response.json ())
   .then (responseJson => {
-    this.setState ({
-      data: responseJson,
-    });
+    if(responseJson=="Tidak"){
+      this.setState({
+        ada: false,
+        data:[]
+      })
+    }else{
+      this.setState ({
+        data: responseJson,
+        ada: true
+      });
+    }
+    
   });
 
   }
@@ -32,12 +42,17 @@ export default class PembelianScreen extends Component {
     this._getListPembelian();
   }
 
+  componentDidUpdate(){
+    this._getListPembelian();
+  }
+
   render() {
     return (
       <View style={{ flex: 1, paddingLeft: 5, paddingRight: 5 }}>
         <ScrollView style={{ flex: 1 }}>
         {
-          this.state.data.map((items,i)=>{
+          this.state.ada == true ? (
+            this.state.data.map((items,i)=>{
             if(items.status_pembelian == '0'){
               status = 'Bukti Transfer di tolak'
             }else if(items.status_pembelian == '1'){
@@ -94,14 +109,15 @@ export default class PembelianScreen extends Component {
                           </Button>
                         ):null
                       }
-                    
                   </View>
                 </View>
               </Card>
             )
           })
+          ):(<View style={{paddingTop:10, alignItems:'center'}}>
+            <Text>Tidak ada data</Text>
+          </View>)
         }
-          
         </ScrollView>
       </View>
     );

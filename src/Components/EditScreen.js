@@ -118,31 +118,31 @@ export default class Edit extends Component {
               <Form>
                 <Item floatingLabel>
                   <Label>Nama Produk</Label>
-                  <Input />
+                  <Input value={this.state.nama_barang} onChangeText={nama_barang => this.setState({ nama_barang })}/>
                 </Item>
                 <Item floatingLabel>
                   <Label>Kota Penjual</Label>
-                  <Input />
+                  <Input value={this.state.kota_penjual} onChangeText={kota_penjual => this.setState({ kota_penjual })}/>
                 </Item>
                 <Item floatingLabel>
                   <Label>Kategori</Label>
-                  <Input />
+                  <Input value={this.state.kategori} onChangeText={kategori => this.setState({ kategori })}/>
                 </Item>
                 <Item floatingLabel>
                   <Label>Stock</Label>
-                  <Input />
+                  <Input value={this.state.stock} onChangeText={stock => this.setState({ stock })}/>
                 </Item>
                 <Item regular style={{ flexDirection: 'row', paddingTop: 5, paddingLeft: 10, paddingRight: 10 }}>
                   <Text>Available Size : </Text>
                   <View style={{ width: 60 }}>
-                    <Input placeholder='Size' />
+                    <Input placeholder='Size' value={this.state.sizeMin} onChangeText={sizeMin => this.setState({ sizeMin })}/>
                   </View>
                   <Text> --- </Text>
                   <View style={{ width: 60 }}>
-                    <Input placeholder='Size' />
+                    <Input placeholder='Size' value={this.state.sizeMax} onChangeText={sizeMax => this.setState({ sizeMax })}/>
                   </View>
                 </Item>
-                <Textarea rowSpan={3} bordered placeholder="Textarea" />
+                <Textarea rowSpan={3} bordered placeholder="Textarea" value={this.state.keterangan} onChangeText={keterangan => this.setState({ keterangan })}/>
               </Form>
               <View style={{ paddingTop: 20, paddingBottom: 50, paddingLeft: 10, paddingRight: 10 }}>
                 <Button block>

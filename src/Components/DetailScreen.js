@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import {Header, Left, Body, Right, Card, CardItem, Button} from 'native-base';
 import { Ionicons } from 'react-native-vector-icons';
 
@@ -44,8 +44,19 @@ export default class DetailScreen extends Component {
           <Right/>
         </Header>
         <ScrollView style={{flex:1, paddingLeft:10, paddingRight:10, paddingTop:5}}>
-          <View style={{height:200, borderWidth:1, borderColor:'black', width:'100%'}}>
-
+          <View style={{ height: 200, borderWidth: 1, borderColor: 'black', width: '100%' }}>
+            {this.state.foto_base641
+                    ? <Image
+                        source={{
+                          uri: 'data:image/' +
+                            this.state.tipe1 +
+                            ';base64,' +
+                            this.state.foto_base641,
+                        }}
+                        style={{width: '100%', height: '100%'}}
+                        resizeMode="contain"
+                      />
+                    : (<Text>Test</Text>)}
           </View>
           <View style={{paddingTop:5}}>
             <Text style={{fontSize:20}}>{this.state.nama_barang}</Text>

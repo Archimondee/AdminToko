@@ -91,7 +91,8 @@ export default class AddScreen extends Component {
 
   _addItem = ()=>{
     const {foto_base641, foto_base642, foto_base643, tipe1, tipe2, tipe3, kota_penjual, kategori, stock, sizeMin, sizeMax, keterangan, nama_barang, harga} = this.state;
-    fetch('http://192.168.0.6:8080/api_sepatu/addItem.php', {
+    //console.log(this.state);
+    fetch('http://simlabtiug.com/api_sepatu/AddItem.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -118,8 +119,12 @@ export default class AddScreen extends Component {
         if (responseJson == 'Success') {
           alert('Barang Telah di tambahkan');
           this.props.navigation.navigate('Home');
+        }else{
+          alert('Barang Error'+responseJson);
         }
-      }))
+      })).catch((err)=>{
+        alert("Error add "+err);
+      })
   }
 
   render() {

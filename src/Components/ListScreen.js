@@ -11,7 +11,7 @@ export default class ListScreen extends Component {
   }
 
   _getItems=()=>{
-    fetch('http://192.168.42.53:8080/api_sepatu/getItem.php', {
+    fetch('http://simlabtiug.com/api_sepatu/getItem.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
